@@ -1,0 +1,40 @@
+.base {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--spacing-sm);
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-light);
+  line-height: 1.4;
+}
+
+.default {
+  composes: base;
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+.primary {
+  composes: base;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.secondary {
+  composes: base;
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.accent {
+  composes: base;
+  background: var(--color-warning);
+  color: #fff;
+}
+
+.outline {
+  composes: base;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-light);
+}

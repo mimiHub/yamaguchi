@@ -1,0 +1,127 @@
+.banner {
+  height: 320px;
+  background-image: url("https://picsum.photos/seed/course-banner/1280/500");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 50, 80, 0.35);
+}
+
+.bannerTitle {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.breadcrumb {
+  background: var(--color-bg-light);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.breadcrumbInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-sm) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+.breadcrumbInner span {
+  margin: 0 var(--spacing-xs);
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
+.headingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+}
+
+.heading {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 50, 40, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.imageWrapper:hover .imageOverlay {
+  opacity: 1;
+}
+
+.imageWrapper:hover .image {
+  opacity: 0.7;
+}
+
+.cardBody {
+  padding-top: var(--spacing-md);
+}
+
+.cardTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+}
+
+.cardDesc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.5;
+}
+
+.emptyText {
+  text-align: center;
+  padding: var(--spacing-2xl) 0;
+  color: var(--color-text-light);
+}

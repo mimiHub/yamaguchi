@@ -1,0 +1,156 @@
+.section {
+  padding: var(--spacing-2xl) 0;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+}
+
+.headingDesc {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 430px 1fr;
+  gap: var(--spacing-lg);
+  align-items: stretch;
+}
+
+.infoCard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* infoTop과 infoBottom 사이 간격만 늘어남 */
+}
+.infoTop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md); /* 뱃지-타이틀-가격표는 여기서만 고정 간격 */
+}
+
+.infoBottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.scheduleBadges {
+  display: flex;
+  gap: var(--spacing-xs);
+  /* margin-bottom: var(--spacing-sm); */
+}
+
+.infoTitle {
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  /* margin-bottom: var(--spacing-md); */
+}
+
+.priceTable {
+  flex: 1;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+}
+
+.priceTable th,
+.priceTable td {
+  padding: var(--spacing-sm);
+  text-align: center;
+  font-size: var(--font-size-md);
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* 화·목 행 (첫 번째 행)만 위/아래 초록색 */
+.priceTable tr:first-child th {
+  border-top: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+.priceTable tr:last-child th {
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.routeText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.reserveButton {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: var(--spacing-sm) 0;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+  height: 100%;
+}
+
+.galleryItem {
+  aspect-ratio: 1;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.galleryItem:hover {
+  border-color: var(--color-primary);
+}
+
+.galleryItemActive {
+  border-color: var(--color-primary);
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  /* margin-bottom: var(--spacing-md); */
+}
+
+.priceLogo {
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.infoStack {
+  height: 100%;
+}

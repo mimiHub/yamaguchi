@@ -1,0 +1,40 @@
+.footer {
+  background: var(--color-bg-light);
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-xl) 0;
+  font-style: normal;
+}
+.contact,
+.address {
+  font-style: normal;
+}
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  gap: var(--spacing-2xl);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--color-text);
+  background: url("./../public/f-logo.png") no-repeat center;
+  background-size: 120px;
+  width: 140px;
+  height: 40px;
+}
+
+.phone {
+  font-weight: 700;
+  color: var(--color-gray-500);
+  font-size: var(--font-size-lg);
+}
+.address {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+}
+.addressLabel {
+  color: var(--color-secondary-500);
+}

@@ -1,0 +1,15 @@
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+}
+
+.desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}

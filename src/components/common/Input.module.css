@@ -1,0 +1,215 @@
+.input {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  background: #fff;
+  cursor: pointer;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Button.module.css의 size_sm/md/lg와 동일한 값 - 나란히 놓아도 높이가 맞음 */
+.size_sm {
+  height: var(--control-height-sm);
+  padding: 0 var(--control-padding-x-xs);
+  font-size: var(--control-font-size-sm);
+}
+
+.size_md {
+  height: var(--control-height-md);
+  padding: 0 var(--control-padding-x-xs);
+  font-size: var(--control-font-size-md);
+}
+
+.size_lg {
+  height: var(--control-height-lg);
+  padding: 0 var(--control-padding-x-xs);
+  font-size: var(--control-font-size-lg);
+}
+
+/* textarea 커스텀 */
+textarea.input {
+  min-height: 120px;
+  max-height: 400px; /* 스크롤 버전에서 무한정 커지지 않게 상한선 */
+  line-height: 1.6;
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+}
+
+/* 기본값: 리사이즈 불가, 내용 넘치면 스크롤 */
+.notResizable {
+  resize: none;
+  overflow-y: auto;
+}
+
+/* 옵션: 사용자가 세로로 드래그해서 크기 조정 가능 */
+.resizable {
+  resize: vertical;
+  overflow-y: auto;
+}
+
+.checkLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.hiddenInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.customCheckbox {
+  position: relative;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.hiddenInput:checked + .customCheckbox {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.hiddenInput:checked + .customCheckbox::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.customRadio {
+  position: relative;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+}
+
+.hiddenInput:checked + .customRadio {
+  border-color: var(--color-primary);
+}
+
+.hiddenInput:checked + .customRadio::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.customSwitch {
+  position: relative;
+  flex-shrink: 0;
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--color-border);
+  transition: background 0.2s;
+}
+
+.customSwitch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.hiddenInput:checked + .customSwitch {
+  background: var(--color-primary);
+}
+
+.hiddenInput:checked + .customSwitch::after {
+  transform: translateX(16px);
+}
+
+.submitButton {
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+.fileInput {
+  font-size: var(--font-size-sm);
+}
+
+.field {
+  width: 100%;
+}
+
+.inputError {
+  border-color: var(--color-error);
+}
+
+.inputError:focus {
+  border-color: var(--color-error);
+}
+
+.errorText {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+/* ---------- select 커스텀 ---------- */
+select.input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5.5 7.5L10 12L14.5 7.5' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-sm) center;
+  background-size: 16px;
+  padding-right: calc(var(--spacing-lg) + var(--spacing-xs));
+  cursor: pointer;
+}
+
+/* ---------- date 커스텀 ---------- */
+input[type="date"].input {
+  cursor: pointer;
+}
+
+/* 크롬/엣지 계열 - 기본 달력 아이콘을 우리 색으로 재염색 */
+input[type="date"].input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  filter: invert(38%) sepia(13%) saturate(1094%) hue-rotate(176deg)
+    brightness(94%) contrast(88%);
+  transition: opacity 0.2s;
+}
+
+input[type="date"].input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* 파이어폭스 계열 - 텍스트 색상만 조정 가능 */
+input[type="date"].input::-moz-calendar-picker-indicator {
+  cursor: pointer;
+}

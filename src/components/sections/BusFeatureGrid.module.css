@@ -1,0 +1,153 @@
+.section {
+  padding: var(--spacing-xl) 0 var(--spacing-2xl);
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+}
+
+.headingDesc {
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  align-items: stretch; /* 같은 행의 카드들이 서로 같은 높이로 늘어남 */
+}
+
+.highlightCard {
+  position: relative;
+  background-image: url("/highlightCard.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #1e4d3a;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 240px;
+  overflow: hidden;
+}
+.highlightOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 77, 58, 0.85) 0%,
+    rgba(51, 133, 86, 0.85) 100%
+  );
+  z-index: 0;
+}
+.highlightBrand,
+.highlightTitle {
+  position: relative;
+  z-index: 1;
+}
+.highlightTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.card {
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  height: 240px;
+}
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 77, 58, 0.9) 0%,
+    rgba(51, 133, 86, 0.9) 100%
+  );
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: none;
+}
+.card:hover .cardOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlayTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+
+.overlayDesc {
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+.cardImage {
+  height: 120px;
+  background-color: var(--color-bg-light);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: height 0.3s ease;
+}
+.cardNumber {
+  font-size: 40px;
+  font-weight: 700;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  line-height: 1;
+}
+
+.cardBody {
+  padding: var(--spacing-md);
+  transition: opacity 0.3s ease;
+}
+/* hover 시: 이미지가 카드 전체를 채움 */
+.card:hover .cardImage {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+/* hover 시: 텍스트 영역 숨김 */
+.card:hover .cardBody {
+  opacity: 0;
+  pointer-events: none;
+}
+.cardTitle {
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.cardDesc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.5;
+}

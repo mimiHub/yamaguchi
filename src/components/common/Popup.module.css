@@ -1,0 +1,42 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup {
+  width: 400px;
+  max-width: 90vw;
+  background: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+}
+
+.closeButton {
+  color: #fff;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+}
+
+.content {
+  padding: var(--spacing-lg);
+}

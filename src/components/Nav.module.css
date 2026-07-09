@@ -1,0 +1,88 @@
+.nav {
+  border-bottom: 1px solid var(--color-border);
+}
+.navMenuLink {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+}
+
+.navActive {
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-bold);
+  position: relative;
+  font-size: var(--font-size-lg);
+}
+
+.navActive::after {
+  content: "🚌";
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: -30px;
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  transform: translateX(-50%);
+  border-radius: var(--radius-full);
+  /* background: var(--color-secondary); */
+}
+
+/* nav 유틸리티 영역 */
+.utilityWrapper {
+  background: var(--color-primary-100);
+}
+.navUtility {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+.navUtility button {
+  font-size: inherit;
+  color: inherit;
+}
+
+.navMain {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  gap: var(--spacing-xl);
+  height: var(--header-height);
+}
+
+.navLogo {
+  display: block;
+  width: 190px;
+  height: 72px;
+  background: url("/logo.jpg") no-repeat center;
+  background-size: 190px;
+}
+
+.navMenu {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.loginActions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+.navMenuList {
+  display: flex;
+  gap: var(--spacing-xl);
+  list-style: none;
+}

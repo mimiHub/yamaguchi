@@ -1,0 +1,115 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.slideBg {
+  padding: var(--spacing-2xl) 0;
+  height: 100%;
+}
+
+/* 배너별 배경 - 나중에 이미지로 교체될 자리 */
+.yamaguchi-1day {
+  background: linear-gradient(135deg, #1c5f8a 0%, #2f89b8 60%, #5db8d8 100%);
+  /* background-image: url("../../../public/hero-yamaguchi-1day..jpg");
+  background-size: cover;
+  background-position: center; */
+}
+
+.autumn-promo {
+  background: linear-gradient(135deg, #b8541c 0%, #d97b2f 60%, #f0b35d 100%);
+  /* 이미지로 교체 시:
+  background-image: url("/assets/banners/autumn-promo.jpg");
+  background-size: cover;
+  background-position: center;
+  */
+}
+
+.winter-promo {
+  background: linear-gradient(135deg, #1e3a5f 0%, #3d6b9e 60%, #7fa8d9 100%);
+  /* 이미지로 교체 시:
+  background-image: url("/assets/banners/winter-promo.jpg");
+  background-size: cover;
+  background-position: center;
+  */
+}
+
+.heroInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xl);
+  color: #fff;
+  height: 300px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-sm);
+  padding: 4px var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.heroText {
+  max-width: 560px;
+}
+
+.schedule {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+}
+
+.desc {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.checklistBox {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--color-text);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  max-width: 360px;
+  flex-shrink: 0;
+}
+
+.checklistTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.checkIcon {
+  color: var(--color-primary);
+  margin-right: var(--spacing-xs);
+}
+
+.checklist {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+.hero :global(.swiper-pagination-bullet) {
+  background: #fff;
+  opacity: 0.5;
+}
+
+.hero :global(.swiper-pagination-bullet-active) {
+  opacity: 1;
+  background: #fff;
+}

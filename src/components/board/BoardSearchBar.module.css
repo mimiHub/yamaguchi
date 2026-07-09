@@ -1,0 +1,14 @@
+.searchBar {
+  display: flex;
+  gap: var(--spacing-sm);
+  max-width: 560px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.searchBar > *:first-child {
+  flex: 0 0 140px;
+}
+
+.searchBar > *:nth-child(2) {
+  flex: 1;
+}

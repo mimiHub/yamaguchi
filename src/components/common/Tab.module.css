@@ -1,0 +1,94 @@
+.wrapper {
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.tab,
+.tabActive {
+  cursor: pointer;
+  font-size: var(--font-size-base);
+}
+
+.tabContent {
+  padding: var(--spacing-md) 0;
+}
+
+/* ---------- underline 스타일 (BoardSubNav와 비슷한 밑줄형) ---------- */
+.list-underline {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.variant-underline {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: none;
+  color: var(--color-text-light);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.variant-underline:hover {
+  color: var(--color-text);
+}
+
+.tabActive.variant-underline {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ---------- pill 스타일 (알약 모양 버튼형, FAQ 카테고리용) ---------- */
+.list-pill {
+  padding: var(--spacing-xs);
+  background: var(--color-bg-light);
+  border-radius: var(--radius-full);
+  display: inline-flex;
+}
+
+.variant-pill {
+  padding: var(--spacing-xs) var(--spacing-lg);
+  background: transparent;
+  color: var(--color-text-light);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-medium);
+}
+
+.variant-pill:hover {
+  color: var(--color-text);
+}
+
+.tabActive.variant-pill {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: var(--font-weight-bold);
+}
+/* ---------- solid 스타일 (목업처럼 박스형, 활성 탭만 채워짐) ---------- */
+.list-solid {
+  display: flex;
+  gap: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.variant-solid {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: #fff;
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  margin-right: -1px;
+}
+
+.variant-solid:hover {
+  color: var(--color-text);
+}
+
+.tabActive.variant-solid {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
