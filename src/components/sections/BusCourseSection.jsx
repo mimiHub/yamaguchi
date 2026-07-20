@@ -1,66 +1,52 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { Badge, Stack } from "../common";
+import { Badge } from "../common";
 import { getBusHotelGalleryById } from "../../data/busHotelGallery";
+import { useState } from "react";
 import styles from "./BusCourseSection.module.css";
 
 function BusCourseSection() {
-  const gallery = getBusHotelGalleryById("1");
+  const course = getBusHotelGalleryById("1");
   const [activeIndex, setActiveIndex] = useState(0);
 
-  if (!gallery) {
-    return null;
-  }
-
-  const active = gallery.variants[activeIndex];
+  if (!course) return null;
 
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
         <h2 className={styles.heading}>
-          <img
-            src="/images/bus-icon.png"
-            alt=""
-            className={styles.headingIcon}
-          />
+          <img src="/images/bus-icon.png" alt="" className={styles.headingIcon} />
           Bus Course
-          <span className={styles.headingDesc}>
-            원데이버스 코스별 안내 리스트입니다.
-          </span>
+          <span className={styles.headingDesc}>원데이버스 코스별 안내 리스트입니다.</span>
         </h2>
 
         <div className={styles.content}>
           <div className={styles.infoCard}>
             <div className={styles.infoTop}>
               <div className={styles.scheduleBadges}>
-                {active.departureDays.map((day) => (
+                {course.departureDays.map((day) => (
                   <Badge key={day} variant="primary">
                     {day}
                   </Badge>
                 ))}
               </div>
-              <p className={styles.infoTitle}>{active.title}</p>
+              <p className={styles.infoTitle}>{course.title}</p>
 
               <div className={styles.priceRow}>
-                <img
-                  src="/logo-symbol.png"
-                  alt="Yamaguchi 1Day Bus 로고"
-                  className={styles.priceLogo}
-                />
+                <img src="/logo-symbol.png" alt="Yamaguchi 1Day Bus 로고" className={styles.priceLogo} />
                 <table className={styles.priceTable}>
                   <tbody>
                     <tr>
-                      <th>{active.price.weekdayLabel}</th>
-                      <td>{active.price.weekdayAmount}</td>
+                      <th>{course.price.adultLabel}</th>
+                      <td>{course.price.adultAmount}</td>
                     </tr>
                     <tr>
-                      <th>{active.price.weekendLabel}</th>
-                      <td>{active.price.weekendAmount}</td>
+                      <th>{course.price.childLabel}</th>
+                      <td>{course.price.childAmount}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p className={styles.routeText}>{active.description}</p>
+              <p className={styles.routeText}>{course.description}</p>
             </div>
 
             <div className={styles.infoBottom}>
@@ -71,9 +57,9 @@ function BusCourseSection() {
           </div>
 
           <div className={styles.gallery}>
-            {gallery.variants.map((variant, index) => (
+            {course.images.map((image, index) => (
               <button
-                key={variant.title}
+                key={image}
                 type="button"
                 className={
                   index === activeIndex
@@ -82,11 +68,7 @@ function BusCourseSection() {
                 }
                 onClick={() => setActiveIndex(index)}
               >
-                <img
-                  src={variant.image}
-                  alt={variant.title}
-                  className={styles.galleryImage}
-                />
+                <img src={image} alt={`${course.title} 사진 ${index + 1}`} className={styles.galleryImage} />
               </button>
             ))}
           </div>

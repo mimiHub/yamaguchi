@@ -1,0 +1,121 @@
+.wrapper {
+  position: relative;
+  background: #1a2744;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-lg);
+  overflow-x: auto;
+}
+
+.tag {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  background: #2c3e63;
+  color: #fff;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  padding: 4px var(--spacing-md);
+  border-radius: var(--radius-sm);
+}
+
+.line {
+  display: flex;
+  align-items: start;
+  min-width: 900px;
+  position: relative;
+}
+
+.line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 0;
+}
+
+.stop {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 var(--spacing-xs);
+}
+
+.name {
+  color: #fff;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.nameJp {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  margin-bottom: var(--spacing-sm);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0b23d;
+  margin-bottom: var(--spacing-sm);
+  z-index: 1;
+}
+
+.times {
+  color: #e0b23d;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.4;
+}
+
+.note {
+  color: #e0b23d;
+  font-size: 11px;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.footnote {
+  text-align: right;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  margin-top: var(--spacing-lg);
+}
+
+.courseDescList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.courseDescItem {
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.courseDescItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.courseDescTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-xs);
+}
+
+.courseDescText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
