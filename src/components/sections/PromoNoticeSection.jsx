@@ -11,7 +11,11 @@ function PromoNoticeSection() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <Link to="/bus" className={styles.promoCard}>
+        <a href="https://www.visit-jy.com/ko/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.promoCard}
+          >
           <img src={PROMO_IMAGE} alt="" className={styles.promoImage} />
           <div className={styles.promoOverlay}>
             <p className={styles.promoTitle}>
@@ -23,7 +27,7 @@ function PromoNoticeSection() {
               원데이 코스별 상세 설명 및 각종 정보
             </p>
           </div>
-        </Link>
+        </a>
 
         <div className={styles.noticeCard}>
           <div className={styles.noticeHeader}>
