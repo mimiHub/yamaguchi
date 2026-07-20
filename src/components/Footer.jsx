@@ -3,10 +3,14 @@ import styles from "./Footer.module.css";
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.inner}>
-        <div className={styles.logo}>
+      <div className={styles.inner}>        
+        <a href="https://www.pukwan.co.kr/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.logo}
+        >
           <span className="sr-only">부관훼리</span>
-        </div>
+        </a>
         <address className={styles.contact}>
           <p>☎ 문의전화</p>
           <p>(주)넷투재팬</p>

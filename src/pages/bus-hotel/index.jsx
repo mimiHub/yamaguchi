@@ -126,7 +126,7 @@ function BusHotelPage() {
                 </td>
               </tr>
               <tr>
-                <th>최소출발 인원</th>
+                <th>최소출발인원 변경</th>
                 <td>{active.minPeople}</td>
               </tr>
             </tbody>

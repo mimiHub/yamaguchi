@@ -44,12 +44,12 @@ function Nav() {
             </li>
             <li>
               <NavLink to="/course" className={getMenuClassName}>
-                운행코스
+                관광안내
               </NavLink>
             </li>
             <li>
               <NavLink to="/bus-hotel" className={getMenuClassName}>
-                1Day버스+호텔
+                운행코스+예약
               </NavLink>
             </li>
             <li>

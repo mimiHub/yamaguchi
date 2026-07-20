@@ -13,8 +13,7 @@ const BANNERS = [
     badge: null,
     title: "야마구치 1DAY 버스",
     desc: '야마구치현의 인기있는 관광지만 "모아 모아" 출발하는 야마구치 당일 버스투어! 야마구치현 관광지를 보다 즐겁고 편안하게 둘러볼 수 있는 1일 버스 투어입니다.',
-    boxTitle:
-      "아래 체크항목에 2가지 이상 해당되시는 분은\n[야마구치 1Day Bus]를 신청해주세요!",
+    boxTitle: "아래 체크항목에 2가지 이상 해당되시는 분은\n[야마구치 1Day Bus]를 신청해주세요!",
     highlights: [
       "렌트카 운전이 두려운 분",
       "일본의 비싼 대중교통비가 부담이신 분",
@@ -51,17 +50,23 @@ const BANNERS = [
   },
 ];
 
+// 지금 화면에 보여줄 배너만 선택 - 나중에 켜려면 이 배열만 수정(3개 보여주고 싶을때 1->3 수정)
+const ACTIVE_BANNERS = BANNERS.slice(0, 1);
+
 function HeroBanner() {
+  const isSingle = ACTIVE_BANNERS.length <= 1;
+
   return (
     <section className={styles.hero}>
       <Swiper
         modules={[Pagination, Autoplay]}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        loop={BANNERS.length > 1}
+        pagination={isSingle ? false : { clickable: true }}
+        autoplay={isSingle ? false : { delay: 4000, disableOnInteraction: false }}
+        loop={!isSingle}
+        allowTouchMove={!isSingle}
         className={styles.swiper}
       >
-        {BANNERS.map((banner) => (
+        {ACTIVE_BANNERS.map((banner) => (
           <SwiperSlide key={banner.id}>
             <div className={`${styles.slideBg} ${styles[banner.id]}`}>
               <div className={styles.heroInner}>
