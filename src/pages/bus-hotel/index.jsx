@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Badge, Button, Input, FormMessage, Stack, LabeledBox } from "../../components/common";
 import { getBusHotelGalleryById } from "../../data/busHotelGallery";
 import styles from "./BusHotel.module.css";
-import CourseTimeline from "./CourseTimeline";
+import CourseTimeline from "../../components/bus-hotel/CourseTimeline";
 
 
 
