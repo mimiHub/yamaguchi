@@ -157,32 +157,3 @@
   }
 }
 
-/* 세부일정 */
-.courseDescList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-}
-
-.courseDescItem {
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.courseDescItem:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.courseDescTitle {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-xs);
-}
-
-.courseDescText {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-light);
-  line-height: 1.6;
-}
