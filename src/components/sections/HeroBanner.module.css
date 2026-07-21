@@ -10,10 +10,10 @@
 
 /* 배너별 배경 - 나중에 이미지로 교체될 자리 */
 .yamaguchi-1day {
-  background: linear-gradient(135deg, #1c5f8a 0%, #2f89b8 60%, #5db8d8 100%);
-  /* background-image: url("../../../public/hero-yamaguchi-1day..jpg");
+  /* background: linear-gradient(135deg, #1c5f8a 0%, #2f89b8 60%, #5db8d8 100%); */
+  background-image: url("../../../public/heroBanner01.jpg");
   background-size: cover;
-  background-position: center; */
+  background-position: center;
 }
 
 .autumn-promo {
@@ -78,30 +78,67 @@
   line-height: 1.6;
 }
 
-.checklistBox {
-  background: rgba(255, 255, 255, 0.5);
-  color: var(--color-text);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
+.checklistWrapper {
+  position: relative;
   max-width: 360px;
   flex-shrink: 0;
 }
 
-.checklistTitle {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  margin-bottom: var(--spacing-sm);
+.checklistBox {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--color-text);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
-.checkIcon {
-  color: var(--color-primary);
-  margin-right: var(--spacing-xs);
+.checklistTitle {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: #00273bdd;
+  color: var(--color-gray-0);
+}
+
+.highlightBlue {
+  color: #38bdf8;
+}
+
+.highlightYellow {
+  color: #fbbf24;
+}
+
+.checkBadge {
+  position: absolute;
+  top: 22px;
+  left: -15px;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--color-primary-400);
+  border: 3px solid var(--color-gray-0);
+}
+
+.checkBadge::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  width: 12px;
+  height: 20px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  border-radius: 0.2px;
+  box-shadow: rgb(0, 0, 0, 10, 0.8);
 }
 
 .checklist {
   font-size: var(--font-size-sm);
-  color: var(--color-text-light);
+  color: var(--color-gray-0);
   line-height: 1.8;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: #004754ae;
 }
 
 .hero :global(.swiper-pagination-bullet) {

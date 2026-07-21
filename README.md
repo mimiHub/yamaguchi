@@ -1,137 +1,91 @@
 # Yamaguchi 1Day Bus — 정보구조도 (IA)
 
-> 야마구치현 원데이 버스투어 예약 사이트. **고정형 PC 전용**으로 우선 개발하며, 모바일 버전은 별도 사이트로 추후 제작 예정.
+> 야마구치현 원데이 버스투어 예약 사이트. 고정형 PC 전용(1280px)으로 개발 중. 모바일은 별도 사이트로 추후 제작 예정.
 
-## 1. 기술 스택 & 개발 규칙
+## 1. 기술 스택
 
-| 항목          | 내용                                                                                                                  |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| 프레임워크    | React + Vite                                                                                                          |
-| 라우팅        | `vite-plugin-pages` (파일 기반 라우팅) + `react-router-dom`                                                           |
-| 스타일링      | CSS Modules + 전역 유틸리티 클래스(`common.css`)                                                                      |
-| import 관리   | 배럴 파일(barrel file) 패턴 — `components/common`, `components/board`, `components/sections` 각각 `index.js`로 재수출 |
-| 폰트          | Pretendard (jsDelivr CDN)                                                                                             |
-| 캐러셀        | Swiper (`swiper/react`)                                                                                               |
-| 레이아웃      | 고정폭 1280px (`--max-width`, `--min-width`)                                                                          |
-| 참고 프로젝트 | Nevas (동일 컨벤션 적용: `components/Layout.jsx`에 Nav/Footer, children 패턴)                                         |
+| 항목 | 내용 |
+|---|---|
+| 프레임워크 | React + Vite |
+| 라우팅 | vite-plugin-pages(파일 기반) + react-router-dom |
+| 스타일링 | CSS Modules + 전역 유틸리티(common.css) |
+| import 관리 | 배럴 파일 패턴 — components/common, components/board, components/sections 각각 index.js |
+| 폰트 | Pretendard (jsDelivr CDN) |
+| 캐러셀 | Swiper |
+| 레이아웃 | 고정폭 1280px, 반응형 아님 |
 
-## 2. 디자인 토큰
+## 2. 디자인 토큰 (src/styles/variables.css)
 
-`src/styles/variables.css`에 정의. 원시 토큰(색상 스케일)과 의미 토큰(컴포넌트별 alias)을 분리하는 방식.
+- 색상: Primary/Secondary 100~900 톤 스케일 (500이 메인), Gray 0~1000, Semantic(success/warning/error/info + light 버전)
+- 메인 컬러: --color-primary #338556, --color-secondary #24748f
+- Typography: --font-size-sm/base/lg/xl/2xl (px를 rem으로 자동 변환), --font-weight-regular/medium/bold
+- Spacing: --spacing-xs~2xl
+- Layout: --max-width/--min-width: 1280px, --radius-sm/md/lg/full
+- Component 전용: --btn-*(버튼 색상), --control-height/padding/font-size-sm/md/lg (Button+Input 공유 사이즈 스케일)
 
-### 색상 — 톤 스케일 (100~900) + Semantic + Gray
-
-```css
---color-primary-500: #338556;
---color-secondary-500: #24748f;
---color-primary: var(--color-primary-500);
---color-secondary: var(--color-secondary-500);
-
---color-success: #0d9488;
---color-success-light: #d1f5f0;
---color-warning: #f59e0b;
---color-warning-light: #fef3c7;
---color-error: #ef4444;
---color-error-light: #fee2e2;
---color-info: #3b82f6;
---color-info-light: #dbeafe;
-```
-
-### 컴포넌트 전용 토큰
-
-```css
---btn-primary-bg / --btn-primary-text
---btn-secondary-bg / --btn-secondary-text
---btn-outline-bg / --btn-outline-text / --btn-outline-border / --btn-outline-hover-bg
---btn-text-color
-
---control-height-sm: 32px;
---control-height-md: 40px;
---control-height-lg: 48px;
---control-padding-x-sm / md / lg
---control-font-size-sm / md / lg
-```
-
-Button, Input이 동일한 --control-\* 값을 참조하므로 같은 size(sm/md/lg)끼리는 항상 높이가 일치함.
-
-### Layout
-
-```css
---max-width: 1280px;
---min-width: 1280px;
-```
-
-폰트 사이즈는 px 값을 rem으로 자동 변환하는 방식 사용 (calc(px값 / 16 \* 1rem)), 브라우저 확대/축소 접근성 대응.
-
-## 3. 사이트맵 / 라우팅 구조
+## 3. 사이트맵
 
 ```
-/                           홈 (랜딩페이지)
-├── /bus                     야마구치1Day버스 소개
-├── /course/:id                운행코스 상세  (미착수, ComingSoon으로 임시 대체)
-├── /bus-hotel                1Day버스+호텔  (완성 - 갤러리+상세정보+예약폼)
-├── /tour-info                관광지정보 목록  (미착수)
-│   └── /tour-info/:id         관광지 상세  (미착수)
-└── /board                    문의게시판
-    ├── /board/notice           공지사항 (아코디언 목록)
-    │   └── /board/notice/write   공지사항 작성 (관리자용, 비밀번호 설정)
-    ├── /board/inquiry          문의사항 (아코디언 목록)
-    │   └── /board/inquiry/write  문의하기 작성 (상단 ContactUs 링크도 동일 경로)
-    └── /board/faq              FAQ (카테고리 탭 + 탭별 아코디언)
+/                     홈 (랜딩페이지)
+├── /bus                 야마구치1Day버스 소개
+├── /course               관광지 갤러리 + 도시/분류 카테고리 필터 (완성)
+├── /bus-hotel             1Day버스+호텔 - 단일 코스 상세+예약폼+운행코스 타임라인 (완성)
+└── /board                문의게시판
+    ├── /board/notice        공지사항 (아코디언 목록)
+    │   └── /board/notice/write  공지사항 작성
+    ├── /board/inquiry       문의사항 (아코디언 목록, 질문+답변)
+    │   └── /board/inquiry/write 문의하기 작성 (ContactUs 링크도 동일 경로)
+    └── /board/faq           FAQ (카테고리 탭 + 탭별 아코디언)
 ```
 
-주의: /course/1과 /bus-hotel의 콘텐츠가 서로 바뀌었음. 애초에 "운행코스" 목업(상품상세+예약폼)으로 만들었던 내용을 /bus-hotel로 옮기고, /course/1은 ComingSoon(준비중) 컴포넌트로 대체함. 사용자 확인 후 확정된 사항.
+중요 변경 이력:
+- 애초 "운행코스" 목업(상품상세+예약폼)이 /bus-hotel로 이동, /course는 별개로 관광지 갤러리+필터 페이지로 새로 제작 (구 /tour-info 계획 폐기, /course가 그 역할 대체)
+- 클라이언트 미팅 PPT(요금제 등) 내용은 미반영하기로 확정했었으나, 이후 사용자가 별도로 요금 체계를 화목/금토 요일제에서 **성인/유아 2단계**로 직접 변경 요청함 (아래 4번 참고)
+- /bus-hotel 상품 구조가 "여러 코스(variants) 중 선택"에서 **코스 1개 + 사진 6장 갤러리**로 단순화됨 (텍스트 정보는 고정, 사진만 전환)
 
-참고: 클라이언트 미팅 정리 PPT를 검토했으나, 해당 미팅 내용(온라인예약 폐지, 성인/유아 요금제, 전화예약 등)은 이번 프로젝트에 미반영하기로 확정. 위 사이트맵/네비게이션이 최종 기준.
+### 상단 유틸리티
+- ContactUs → /board/inquiry/write
+- 로그인 → 관리자 전용 Popup 모달 UI만 (실제 인증 없음)
+- "컴포넌트" 링크 → /components-guide (컴포넌트 데모 페이지, 아직 실제 생성 여부 확인 필요)
 
-### 상단 유틸리티 영역 (Nav 최상단)
-
-- ContactUs -> /board/inquiry/write
-- 로그인 -> 관리자 전용, Popup 모달 UI만 구현. 실제 인증 로직은 범위 밖.
-
-### 메인 네비게이션 (4개)
-
-야마구치1Day버스 · 운행코스 · 1Day버스+호텔 · 문의게시판
-
-- NavLink + isActive로 현재 페이지 메뉴 강조 표시
-- "문의게시판"만 특수 처리: 공지사항/문의사항/FAQ 어디에 있든 활성 유지되어야 해서, NavLink의 정확 매칭 대신 useLocation().pathname.startsWith("/board")로 직접 판단
+### 메인 네비게이션
+야마구치1Day버스 · 운행코스(→/course) · 1Day버스+호텔(→/bus-hotel) · 문의게시판
+- NavLink + isActive로 활성 표시, "문의게시판"만 useLocation().pathname.startsWith("/board")로 서브페이지 전체에서 활성 유지
 
 ### 게시판 잠금 기능
-
-공지사항/문의사항/FAQ 각 항목은 locked: true + password 필드를 가질 수 있음. 잠긴 글 클릭 시 PasswordPrompt 팝업으로 비밀번호 확인 후 열람 가능.
+locked:true + password 필드 있는 글은 PasswordPrompt로 비밀번호 확인 후 열람
 
 ## 4. 페이지 구성
 
-### / 홈 (랜딩페이지) - 3개 섹션
+### / 홈 — 3섹션
+1. **HeroBanner** — BANNERS 데이터 3개(야마구치소개/가을시즌/겨울시즌) 존재하나, `ACTIVE_BANNERS = BANNERS.slice(0, 1)`로 **현재 1개만 화면에 노출**, Swiper 자동재생/스와이프/페이지네이션 전부 비활성화(잠금). 나중에 여러 개 다시 쓰려면 slice 숫자만 변경.
+2. **BusCourseSection** — busHotelGallery.js의 단일 코스 데이터 사용. 요일 뱃지, 성인/유아 요금표(가격표 th만 화목행 초록/금토행 회색 구분선, 좌우 테두리 없음), 로고 심볼 + 가격표, 설명, 예약하기(→/bus-hotel, 내부 Link). 오른쪽 갤러리 6장(aspect-ratio 4/3), 왼쪽 infoTop/infoBottom 구조로 여백 관리(margin-top:auto 대신 갤러리 높이에 카드가 자연히 맞춰지는 방식으로 최종 조정)
+3. **PromoNoticeSection** — noticeList.js 최신 5개 실데이터, "관광정보 둘러보기" 카드는 **외부 링크** https://www.visit-jy.com/ko/ (a target=_blank), Notice 리스트 클릭시 전부 /board/notice로 이동(딥링크 자동오픈 기능은 보류, TODO 참고)
 
-1. HeroBanner - Swiper 캐러셀, 배너 데이터 배열로 관리, 요일 뱃지는 공용 Badge 사용
-2. BusCourseSection - 요일별 가격표(공용 Badge) + 노선 요약 + 갤러리 + 예약하기 CTA
-3. PromoNoticeSection - 관광정보 프로모 카드 + Notice 위젯
+### /bus — 2섹션
+BusIntroBanner(소개) + BusFeatureGrid(특징 카드 6개: highlightCard 1개(고정 오버레이, hover 없음) + FEATURES 5개(hover시 이미지 확대+텍스트 숨김+반투명 오버레이, 숫자 왼쪽위 큰 반투명 흰색))
 
-### /bus 야마구치1Day버스 소개 - 2개 섹션
+### /course — 완성
+courseItems.js(관광지 6개: title/city/category/desc/image) 기반. 상단 배너+브레드크럼, "☰카테고리" 버튼으로 도시/분류 select 필터 토글, 그리드 카드(hover시 오버레이+이미지 반투명)
 
-1. BusIntroBanner - 소개 배너
-2. BusFeatureGrid - 원데이버스 장점 카드 그리드 (호버 시 오버레이 애니메이션)
+### /bus-hotel — 완성, 최근 대폭 개편
+- busHotelGallery.js: **코스 1개**(variants 배열 아님), 필드: brand, title, departureDays(["토","일"]), price: {adultLabel:"성인", adultAmount:"59,000원", childLabel:"6세 미만", childAmount:"29,000원"}, minPeople, description(경로 텍스트: "고쿠라역-시모노세키항 국제터미널-...-고쿠라역"), images(6장 배열)
+- 갤러리: 6장 썸네일(그리드 6열), 클릭해도 **텍스트 정보는 고정**, 사진만 전환 (예전 variants 구조 폐기)
+- 정보 테이블: 출발일(뱃지 토/일) / 상품가격(rowSpan 2, 성인·유아 각 행) / 최소출발인원
+- 예약 폼: 출발일(date)+승차/하차장소(select)+예약하기. 유효성검사, 완료시 FormMessage success + 수정/취소
+- **운행 코스 섹션**: LabeledBox 3개 중 "여행일정"에 `CourseTimeline` 컴포넌트 삽입 — 클라이언트 제공 이미지(남색 배경 타임라인 그래픽)를 HTML/CSS로 직접 재현. 1회성 페이지 전용이라 `src/pages/bus-hotel/CourseTimeline.jsx` 안에 데이터(STOPS: 9개 정거장명/시간, DESCRIPTIONS: 5개 관광지 설명)와 컴포넌트를 한 파일에 통합(공용 컴포넌트로 안 뽑음, 데이터 분리도 안 함 — 사용자 명시적 결정). `CourseTimeline.module.css` 별도 파일 필요.
+  - ⚠️ **최근 미해결 이슈**: CourseTimeline 스타일이 전혀 안 먹는 문제 발생 — `CourseTimeline.module.css` 파일 존재 여부 및 `import styles from "./CourseTimeline.module.css";` 확인 필요 (새 세션에서 이어서 디버깅 예정)
+- 나머지 LabeledBox "비고" 2개는 내용 미정, 구조만 존재
 
-### /bus-hotel - 완성됨 (구 "운행코스" 상세 내용)
+### /board/notice, /board/inquiry — 아코디언 목록
+- 클릭시 그 자리에서 아코디언 오픈(페이지 이동 없음), 열린 글은 목록에서 제외되고 상세 카드로 표시
+- 이전/다음은 id 오름차순 기준
+- 페이지네이션(PAGE_SIZE=10), SVG chevron 화살표(PaginationArrow, currentColor+180도 회전 재사용)
+- notice/inquiry 상세: `LabeledBox label={selectedItem.title}` 하나만 사용 — 질문(title)이 헤더, 답변(answer 있으면 그것, 없으면 "미답변")이 body. 문의사항은 상단 요약 테이블에 제목이 이미 나오므로 LabeledBox 라벨은 title 대신 "답변" 고정 텍스트로 최종 조정(중복 방지)
+- notice만 작성 페이지 보유 (구분/작성자/제목/비밀번호/내용, 작성완료 팝업, 이탈시 확인팝업 isDirty)
 
-- 갤러리: useState로 선택된 variant 관리, 클릭 시 메인 이미지 + 브랜드/타이틀/요일/가격/설명 전체가 함께 전환 (fade-in 애니메이션)
-- 예약 폼: 출발일(date) + 승차/하차장소(select) + 예약하기 버튼
-  - 유효성 검사: 셋 다 선택 안 하면 FormMessage variant="error"
-  - 예약 완료 시 FormMessage variant="success"로 요약 표시, 수정/취소 버튼 제공
-- 운행 코스 섹션: LabeledBox(라벨+자유 콘텐츠 박스) 3개, 현재 내용 비어있음
-
-### /board/notice, /board/inquiry - 목록 + 아코디언 상세
-
-- 클릭 시 페이지 이동 없이 그 자리에서 아코디언처럼 열림
-- 이전/다음 버튼은 번호(id) 오름차순 기준으로 이동
-- 페이지네이션 포함 (PAGE_SIZE = 10)
-- notice만 작성 페이지 보유: 구분/작성자/제목/비밀번호/내용, 작성완료 팝업, 이탈 확인 팝업(isDirty)
-
-### /board/faq - 탭 + 탭별 아코디언
-
-- Tab 컴포넌트(variant="solid")로 4개 카테고리 전환
-- 카테고리(탭)마다 FaqCategoryList가 독립적으로 렌더링되어 각자 자기만의 상태를 가짐
+### /board/faq — 탭 + 탭별 아코디언
+Tab(variant="solid") 4개 카테고리(버스예약/교통정보/관광정보/기타), FaqCategoryList가 탭마다 독립 useBoardAccordion 인스턴스. 상세는 `LabeledBox label={selectedItem.title} icon="Q"` (질문이 헤더, content가 답변 body)
 
 ## 5. 폴더 구조
 
@@ -139,88 +93,67 @@ Button, Input이 동일한 --control-\* 값을 참조하므로 같은 size(sm/md
 src/
   components/
     Layout.jsx, Nav.jsx, Footer.jsx
-    common/   (Button, Input, Badge, Card, Title, Popup, Tab, Stack, FormMessage, LabeledBox, ComingSoon + index.js)
-    board/    (BoardSubNav, BoardHeader, BoardTable, BoardSearchBar, BoardPagination, PaginationArrow, PasswordPrompt + index.js)
-    sections/ (HeroBanner, BusCourseSection, PromoNoticeSection, BusIntroBanner, BusFeatureGrid + index.js)
+    common/   Button, Input, Badge, Card, Title, Popup, Tab, Stack,
+              FormMessage, LabeledBox, ComingSoon + index.js
+    board/    BoardSubNav, BoardHeader, BoardTable, BoardSearchBar,
+              BoardPagination, PaginationArrow, PasswordPrompt + index.js
+    sections/ HeroBanner, BusCourseSection, PromoNoticeSection,
+              BusIntroBanner, BusFeatureGrid + index.js
   hooks/
     useBoardAccordion.js
   pages/
     index.jsx
-    bus/index.jsx        (인라인 style 정리 필요 - TODO)
-    bus-hotel/index.jsx, BusHotel.module.css
-    course/[id].jsx       (ComingSoon)
-    tour-info/            (미착수)
+    bus/index.jsx              (인라인 style 정리 필요 - TODO)
+    course/index.jsx, Course.module.css
+    bus-hotel/
+      index.jsx, BusHotel.module.css
+      CourseTimeline.jsx, CourseTimeline.module.css  (페이지 전용, 데이터 내장)
     board/
       Board.module.css
       notice/index.jsx, write.jsx
       inquiry/index.jsx, write.jsx
       faq.jsx
   data/
-    busHotelGallery.js, noticeList.js, inquiryList.js, faqList.js
+    busHotelGallery.js   (단일 코스, images 배열)
+    courseItems.js       (/course 관광지 6개)
+    noticeList.js, inquiryList.js(answer 필드 포함), faqList.js
   styles/
     variables.css, reset.css, common.css
 ```
 
 ## 6. 데이터 확장 규칙
 
-### /bus-hotel 갤러리 항목 추가 시
-
-1. busHotelGallery.js의 variants 배열에 객체 추가
-2. 컴포넌트 수정 불필요
-
-### 게시판 글 추가 시
-
-1. 해당 data/\*.js 배열에 객체 추가, id는 문자열로 중복 없이
-2. 잠긴 글은 locked: true + password 추가
-3. BoardTable "No." 컬럼은 item.id 그대로 표시 (배열 위치 기반 아님)
-
-### 배너 추가 시
-
-1. BANNERS 배열에 객체 추가
-2. HeroBanner.module.css에 동일한 이름의 CSS 블록 추가
+- **busHotelGallery.js**: 코스 1개 구조. images 배열에 사진 추가/교체만 하면 됨. 텍스트 정보(brand/title/price/description)는 공통.
+- **게시판 글 추가**: id는 문자열, 중복 없이. locked:true 시 password 필수. BoardTable "No."는 item.id 그대로 표시(배열 위치 아님).
+- **courseItems.js**: city/category 값을 CITY_OPTIONS/CATEGORY_OPTIONS 배열에도 추가해야 필터에 노출됨.
+- **HeroBanner**: BANNERS에 항목 추가 후 ACTIVE_BANNERS의 slice 범위를 늘리면 화면에 반영됨.
 
 ## 7. 미확정 / TODO
 
-- [ ] pages/bus/index.jsx 인라인 스타일 -> bus.module.css로 분리
-- [ ] /tour-info, /tour-info/:id 미착수
-- [ ] /course/:id 실제 콘텐츠 미정
-- [ ] 로그인 실제 인증 연동 범위 논의 필요
-- [ ] 모바일 버전 별도 사이트로 추후 제작
-- [ ] 실제 이미지 리소스 교체 (현재 placeholder)
-- [ ] bus-hotel "운행 코스" LabeledBox 3개 실제 콘텐츠 미정
-- [ ] BusCourseSection "예약하기" 링크 대상 재확인
+- [ ] CourseTimeline.module.css 스타일 미적용 문제 — 파일 존재/import 확인 필요 (최우선)
+- [ ] pages/bus/index.jsx 인라인 스타일 → bus.module.css 분리
+- [ ] 로그인 실제 인증 연동 범위 논의
+- [ ] 랜딩페이지 Notice 클릭시 해당 글 자동 오픈되는 딥링크(useSearchParams+useEffect) — 보류
+- [ ] /components-guide 페이지 실제 파일 생성 여부 확인 (가이드만 제공했음)
+- [ ] 실제 이미지 리소스 교체 (현재 대부분 picsum.photos placeholder)
+- [ ] bus-hotel "비고" LabeledBox 2개 내용 미정
+- [ ] 모바일 버전은 별도 사이트로 추후 제작
 
-## 8. 접근성 / 시맨틱 HTML 개선
+## 8. 접근성 / 시맨틱 HTML
 
-튜터 피드백으로 전체 프로젝트의 시맨틱 태그를 점검하고 개선함.
+- Nav 메뉴 `<ul><li>`, BoardSubNav도 동일
+- Popup: role="dialog" aria-modal aria-labelledby, 닫기 버튼 blind 텍스트
+- Tab: role="tablist"/"tab"+aria-selected/"tabpanel"+aria-labelledby
+- Footer 연락처/주소: `<address>` (font-style:normal로 이탤릭 재정의), 전화번호 tel: 링크
+- 로고/외부링크 이미지: 배경이미지+blind 텍스트는 반드시 **같은 태그**(a 자체)에 함께 넣어야 함 — div로 감싸고 a를 안에 넣으면 클릭 영역이 사라지는 실수 반복 발생했음
+- 외부 링크(target="_blank")는 항상 rel="noopener noreferrer" 동반
 
-- Nav.jsx: 메뉴 4개를 `<div>` 나열에서 `<ul><li>` 구조로 전환 (스크린리더가 "메뉴 항목 개수"를 인식하도록)
-- Popup.jsx: `role="dialog"`, `aria-modal="true"`, `aria-labelledby`로 모달임을 명시. 닫기 버튼(X)에 `blind` 텍스트로 "닫기" 라벨 추가
-- Tab.jsx: `role="tablist"` / `role="tab"` + `aria-selected` / `role="tabpanel"` + `aria-labelledby` 추가 (탭 UI의 표준 ARIA 패턴)
-- BoardSubNav.jsx: 탭 메뉴를 `<ul><li>`로 전환 (BoardSubNav는 실제 URL 이동이 있는 메뉴라 Tab.jsx의 ARIA 탭 패턴과는 다르게 처리)
-- Footer.jsx: 연락처/주소 블록을 `<div>`에서 `<address>`로 전환, 전화번호는 `<a href="tel:...">`로 실제 클릭 가능하게. 브라우저 기본 font-style: italic은 CSS로 normal 재지정
-- bus-hotel 갤러리 썸네일: `<div>` 나열 -> `<ul><li>`로 전환
+## 9. 자주 겪은 실수 (참고)
 
-### 이 과정에서 겪은 이슈 (참고용)
-
-- `<li>` 안에 들어간 `<a>`(NavLink)는 기본이 inline이라 padding/gap/align-items가 제대로 안 먹음 -> `<a>` 자체에 display: flex 필요
-- CSS 블록을 여러 개로 나눠 관리하다가, 나중에 추가한 공통 블록이 이전 블록의 color/border-bottom을 실수로 덮어쓴 사례 있었음 -> 색상처럼 서로 달라야 하는 속성과, 레이아웃처럼 공통인 속성을 같은 블록에 섞어 넣지 않도록 주의
-
-## 9. 완료된 작업 로그
-
-- [x] 폴더 구조 확정 + 배럴 파일 패턴 도입
-- [x] 디자인 토큰 체계 확장 (톤 스케일 + Semantic + 컴포넌트 전용)
-- [x] Layout, 고정형 1280px 레이아웃
-- [x] 랜딩페이지 3섹션 + Swiper 캐러셀
-- [x] /bus 소개 배너 + 특징 그리드
-- [x] 공용 컴포넌트 라이브러리 구축
-- [x] Nav 활성화 처리, 로그인 팝업, 로고 접근성
-- [x] /bus-hotel 완성
-- [x] /course/1 <-> /bus-hotel 콘텐츠 스왑 확정
-- [x] useBoardAccordion 커스텀 훅
-- [x] 게시판 완성 (아코디언, 페이지네이션, 잠금, 검색바, FAQ 탭)
-- [x] 공지사항/문의하기 작성 페이지
-- [x] 데이터 샘플 실제 텍스트로 교체
-- [x] CSS 명시도 이슈 해결
-- [x] Pagination 화살표 SVG화
-- [x] Textarea 리사이즈 옵션화
+- import 누락 / 배럴 파일(index.js) export 빠뜨림 → 화면 빈 페이지의 90% 원인
+- CSS 변수가 variables.css에 없는데 참조 → 에러 없이 조용히 무시됨 (Nevas 원본 복사시 자주 발생)
+- CSS 명시도: 태그+클래스 조합이 순수 클래스보다 강함 → BoardTable th/td 정렬은 결국 각 셀에 명시적 className(align-left 등) 부여하는 방식으로 확정 (CSS cascade 트릭 대신)
+- 데이터 구조 변경시 그 데이터를 쓰는 모든 파일(랜딩페이지+bus-hotel 등) 동시 확인 필요
+- public/ 폴더 이미지는 절대경로(/파일명), src/assets/는 상대경로
+- <li> 안 <a>/NavLink는 display:flex 명시 필요 (안 그러면 정렬 깨짐)
+- 파일 첨부가 간헐적으로 빈 내용 전달되는 이슈 있었음 — 안 되면 텍스트로 직접 붙여넣기 권장

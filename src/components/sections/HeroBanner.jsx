@@ -7,13 +7,39 @@ import styles from "./HeroBanner.module.css";
 
 const SCHEDULE_DAYS = ["화", "목", "금", "토"];
 
+// boxTitle 안의 **텍스트**(하늘색), ##텍스트##(노란색)를 강조 span으로 변환, \n은 줄바꿈으로 처리
+function renderBoxTitle(text) {
+  return text.split("\n").map((line, lineIndex, lines) => (
+    <span key={lineIndex}>
+      {line.split(/(\*\*.*?\*\*|##.*?##)/g).map((part, partIndex) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
+            <span key={partIndex} className={styles.highlightBlue}>
+              {part.slice(2, -2)}
+            </span>
+          );
+        }
+        if (part.startsWith("##") && part.endsWith("##")) {
+          return (
+            <span key={partIndex} className={styles.highlightYellow}>
+              {part.slice(2, -2)}
+            </span>
+          );
+        }
+        return part;
+      })}
+      {lineIndex < lines.length - 1 && <br />}
+    </span>
+  ));
+}
+
 const BANNERS = [
   {
     id: "yamaguchi-1day",
     badge: null,
     title: "야마구치 1DAY 버스",
     desc: '야마구치현의 인기있는 관광지만 "모아 모아" 출발하는 야마구치 당일 버스투어! 야마구치현 관광지를 보다 즐겁고 편안하게 둘러볼 수 있는 1일 버스 투어입니다.',
-    boxTitle: "아래 체크항목에 2가지 이상 해당되시는 분은\n[야마구치 1Day Bus]를 신청해주세요!",
+    boxTitle: "아래 체크항목에 **2가지 이상** 해당되시는 분은\n##[야마구치 1Day Bus]##를 신청해주세요!",
     highlights: [
       "렌트카 운전이 두려운 분",
       "일본의 비싼 대중교통비가 부담이신 분",
@@ -87,16 +113,18 @@ function HeroBanner() {
                   <p className={styles.desc}>{banner.desc}</p>
                 </div>
 
-                <div className={styles.checklistBox}>
-                  <p className={styles.checklistTitle}>
-                    <span className={styles.checkIcon}>✔</span>
-                    {banner.boxTitle}
-                  </p>
-                  <ul className={styles.checklist}>
-                    {banner.highlights.map((item) => (
-                      <li key={item}>· {item}</li>
-                    ))}
-                  </ul>
+                <div className={styles.checklistWrapper}>
+                  <span className={styles.checkBadge} aria-hidden="true" />
+                  <div className={styles.checklistBox}>
+                    <p className={styles.checklistTitle}>
+                      {renderBoxTitle(banner.boxTitle)}
+                    </p>
+                    <ul className={styles.checklist}>
+                      {banner.highlights.map((item) => (
+                        <li key={item}>· {item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

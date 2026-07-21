@@ -14,12 +14,12 @@ export const busHotelGallery = [
     description:
       "고쿠라역 - 시모노세키항 국제터미널 - 시모노세키역 - 츠노시마대교 - 모토노스미신사 - 센자키친 - 아키요시다이 - 벳푸벤텐연못 - 씨몰 - 고쿠라역",
     images: [
-      "https://picsum.photos/seed/yamaguchi-course-1/800/533",
-      "https://picsum.photos/seed/yamaguchi-course-2/800/533",
-      "https://picsum.photos/seed/yamaguchi-course-3/800/533",
-      "https://picsum.photos/seed/yamaguchi-course-4/800/533",
-      "https://picsum.photos/seed/yamaguchi-course-5/800/533",
-      "https://picsum.photos/seed/yamaguchi-course-6/800/533",
+      "/heroBanner01.jpg",
+      "/heroBanner02.jpg",
+      "/heroBanner03.jpg",
+      "/heroBanner04.jpg",
+      "/heroBanner05.jpg",
+      "/heroBanner06.jpg",
     ],
   },
 ];
