@@ -4,6 +4,10 @@ import { getBusHotelGalleryById } from "../../data/busHotelGallery";
 import { useState } from "react";
 import styles from "./BusCourseSection.module.css";
 
+function handleImgError(e) {
+  e.currentTarget.style.display = "none";
+}
+
 function BusCourseSection() {
   const course = getBusHotelGalleryById("1");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -14,10 +18,15 @@ function BusCourseSection() {
     <section className={styles.section}>
       <div className={styles.inner}>
         <h2 className={styles.heading}>
-          <img src="/images/bus-icon.png" alt="" className={styles.headingIcon} />
+          <img
+            src="/images/bus-icon.png"
+            alt=""
+            className={styles.headingIcon}
+            onError={handleImgError}
+          />
           Bus Course
           <span className={styles.headingDesc}>원데이버스 코스별 안내 리스트입니다.</span>
-        </h2>
+        </h2>       
 
         <div className={styles.content}>
           <div className={styles.infoCard}>
